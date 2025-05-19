@@ -40,6 +40,9 @@ package example.hello;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Server implements Hello {
 
@@ -50,6 +53,17 @@ public class Server implements Hello {
         return "Hello, world!";
     }
 
+    public String reverse(String input) {
+        System.out.println("reverse() called with: " + input);
+        return new StringBuilder(input).reverse().toString();
+    }
+
+    public String getTime() {
+        System.out.println("getTime() called");
+        LocalTime now = LocalTime.now();
+        return now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+    
     public static void main(String[] args) {
         try {
             Server obj = new Server();
