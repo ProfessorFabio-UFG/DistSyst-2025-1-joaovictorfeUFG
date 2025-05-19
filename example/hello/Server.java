@@ -46,6 +46,7 @@ public class Server implements Hello {
     public Server() {}
 
     public String sayHello() {
+        System.out.println("Método sayHello() foi chamado pelo cliente!");
         return "Hello, world!";
     }
 
