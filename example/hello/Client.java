@@ -42,22 +42,22 @@ import java.rmi.registry.Registry;
 
 public class Client {
 
-    private Client() {}
-
     public static void main(String[] args) {
+        System.out.println("Iniciando cliente");
 
-        System.out.println("Initiating client");
-        
         String host = (args.length < 1) ? null : args[0];
         try {
-            Registry registry = LocateRegistry.getRegistry(host);
-            System.out.println("Registry has been located");
+            Registry registry = LocateRegistry.getRegistry(host, 5678); // Porta 5678
+            System.out.println("Registry localizado na porta 5678");
+
             Hello stub = (Hello) registry.lookup("Hello");
-            System.out.println("Found server");
+            System.out.println("Stub do servidor obtido");
+
             String response = stub.sayHello();
-            System.out.println("response: " + response);
+            System.out.println("Resposta: " + response);
+
         } catch (Exception e) {
-            System.err.println("Client exception: " + e.toString());
+            System.err.println("Exceção no cliente: " + e.toString());
             e.printStackTrace();
         }
     }
