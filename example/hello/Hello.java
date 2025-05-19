@@ -42,4 +42,6 @@ import java.rmi.RemoteException;
 
 public interface Hello extends Remote {
     String sayHello() throws RemoteException;
+    String reverse(String input) throws RemoteException;
+    String getTime() throws RemoteException;
 }
