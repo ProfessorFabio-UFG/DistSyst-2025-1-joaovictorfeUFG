@@ -39,7 +39,6 @@ package example.hello;
 
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Server implements Hello {
@@ -50,19 +49,18 @@ public class Server implements Hello {
         return "Hello, world!";
     }
 
-    public static void main(String args[]) {
-
+    public static void main(String[] args) {
         try {
             Server obj = new Server();
             Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
 
-            // Bind the remote object's stub in the registry
-            Registry registry = LocateRegistry.getRegistry();
-            registry.bind("Hello", stub);
+            // Cria o registry localmente na porta 5678
+            Registry registry = LocateRegistry.createRegistry(5678);
+            registry.rebind("Hello", stub);
 
-            System.err.println("Server ready");
+            System.out.println("Servidor pronto na porta 5678");
         } catch (Exception e) {
-            System.err.println("Server exception: " + e.toString());
+            System.err.println("Exceção no servidor: " + e.toString());
             e.printStackTrace();
         }
     }
