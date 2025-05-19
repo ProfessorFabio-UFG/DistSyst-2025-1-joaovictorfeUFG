@@ -57,6 +57,14 @@ public class Client {
             String response = stub.sayHello();
             System.out.println("Resposta: " + response);
 
+            System.out.println("Chamando reverse(\"banana\")...");
+            String reversed = stub.reverse("banana");
+            System.out.println("Reverso: " + reversed);
+
+            System.out.println("Chamando getTime()...");
+            String time = stub.getTime();
+            System.out.println("Hora: " + time);
+
         } catch (Exception e) {
             System.err.println("Exceção no cliente: " + e.toString());
             e.printStackTrace();
