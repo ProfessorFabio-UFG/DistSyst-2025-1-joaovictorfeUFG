@@ -53,7 +53,7 @@ public class Server implements Hello {
     public static void main(String[] args) {
         try {
             Server obj = new Server();
-            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
+            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 5679); // <- porta fixa
 
             // Cria o registry localmente na porta 5678
             Registry registry = LocateRegistry.createRegistry(5678);
