@@ -50,6 +50,7 @@ public class Client {
             Registry registry = LocateRegistry.getRegistry(host, 5678); // Porta 5678
             System.out.println("Registry localizado na porta 5678");
 
+            System.out.println("Chamando sayHello()...");
             Hello stub = (Hello) registry.lookup("Hello");
             System.out.println("Stub do servidor obtido");
 
